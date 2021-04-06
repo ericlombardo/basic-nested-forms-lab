@@ -9,10 +9,12 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @recipe.ingredients.build
+    @recipe.ingredients.build
   end
 
   def create
-    recipe = Recipe.new(title: params[:recipe][:title])
+    recipe = Recipe.new(recipe_params)
     recipe.save ? (redirect_to recipe_path(recipe)) : (render :new)
   end
 
